@@ -3,9 +3,18 @@
 #include <unistd.h>
 
 #define SHARED_DATA_LEN 10
-int shared_data[SHARED_DATA_LEN] = {0,};
+int shared_data[SHARED_DATA_LEN];
 
 pthread_mutex_t mutex;
+
+void init_shared_data()
+{
+    int i;
+    for(i = 0; i < SHARED_DATA_LEN; i++)
+    {
+        shared_data[i] = 0;
+    }
+}
 
 void* produce(void* arg)
 {
@@ -63,6 +72,7 @@ void* consume_with_mutex(void* arg)
 int main(void)
 {
     // threads without mutex
+    init_shared_data();
     pthread_t producer;
     pthread_t consumer;
 
@@ -73,6 +83,7 @@ int main(void)
     pthread_join(consumer, NULL);
     
     // threads with mutex
+    init_shared_data();
     pthread_t producer_m;
     pthread_t consumer_m;
     
