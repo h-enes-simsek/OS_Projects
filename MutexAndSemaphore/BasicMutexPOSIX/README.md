@@ -3,7 +3,7 @@ Two threads access the same shared source simultaneously. One thread tries to wr
 
 Firstly the program runs the threads without a sync mechanism, then runs with mutex. 
 
-# What Do This Program Do?   
+# What Does This Program Do?   
 
 Shared array is initialized with zeros. Producer thread writes ones to shared array starting from the beginning. Consumer thread reads the data from the end and writes to another array(but not shared) to see results.
 
