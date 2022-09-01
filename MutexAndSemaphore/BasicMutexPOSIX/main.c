@@ -9,7 +9,7 @@ int consumers_final_data[SHARED_DATA_LEN]; // only consumer writes
 pthread_mutex_t mutex;
 
 
-void (int data[])
+void print_data(int data[])
 {
     printf("[");
     int i;
@@ -104,6 +104,7 @@ int main(void)
     pthread_t consumer;
 
     pthread_create(&producer, NULL, produce, NULL);
+		usleep(100); // consumer should start second
     pthread_create(&consumer, NULL, consume, NULL);
 
     pthread_join(producer, NULL);
@@ -121,6 +122,7 @@ int main(void)
     pthread_mutex_init(&mutex, NULL);
 
     pthread_create(&producer_m, NULL, produce_with_mutex, NULL);
+		usleep(100); // consumer should start second
     pthread_create(&consumer_m, NULL, consume_with_mutex, NULL);
 
     pthread_join(producer_m, NULL);

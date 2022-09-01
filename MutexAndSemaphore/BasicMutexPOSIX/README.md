@@ -67,3 +67,6 @@ What consumer reads: [1 1 1 1 1 1 1 1 1 1 ]
 ```
 
 As you can see, without mutex consumer reads wrong data that includes zeros. However, with mutex producer runs first and consumer reads expected data.
+
+# Note
+The consumer thread should run after the producer thread in order not to lock mutex first. For the sake of simplicity, I made it possible by adding a time delay to the main thread, but there are better ways to do it. 
