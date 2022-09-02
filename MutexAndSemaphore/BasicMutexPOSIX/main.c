@@ -104,7 +104,7 @@ int main(void)
     pthread_t consumer;
 
     pthread_create(&producer, NULL, produce, NULL);
-		usleep(100); // consumer should start second
+    usleep(100); // consumer should start second
     pthread_create(&consumer, NULL, consume, NULL);
 
     pthread_join(producer, NULL);
@@ -122,7 +122,7 @@ int main(void)
     pthread_mutex_init(&mutex, NULL);
 
     pthread_create(&producer_m, NULL, produce_with_mutex, NULL);
-		usleep(100); // consumer should start second
+    usleep(100); // consumer should start second
     pthread_create(&consumer_m, NULL, consume_with_mutex, NULL);
 
     pthread_join(producer_m, NULL);
